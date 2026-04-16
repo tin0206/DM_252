@@ -1,0 +1,41 @@
+Understood! Since you are keeping the rows where the abstract is null, the flow needs to emphasize data preservation and robust feature engineering. Even without an abstract, the title and venue provide enough context for the model to make an educated guess.
+
+Here is the revised, professional workflow written in English for your documentation or to share with others.
+
+Data Processing Workflow: Research Paper Classification
+1. Data Enrichment (API Integration)
+The raw dataset was enriched to provide more context for the classification task.
+
+Source: Stage_1_publcitrain.csv
+
+Action: Missing abstracts were retrieved using the Semantic Scholar API via DOI lookups.
+
+Strategy: Implemented a Rate-Limit Handler (1.1s delay) and a Checkpointer to ensure the script could recover from connection interruptions without losing data.
+
+2. Structural Audit & Null Management
+Instead of discarding incomplete data, we adopted a "Maximum Information" strategy.
+
+ID Integrity: A gap analysis was performed, identifying 86 missing IDs (range 0–595). These gaps were documented in missing_ids.txt.
+
+Inclusive Cleaning: In train.csv, rows with missing abstracts were preserved.
+
+Null Imputation: All NaN values in title, abstract, and venue were replaced with empty strings ("") to ensure that downstream string concatenation would not fail or result in null outputs.
+
+3. Feature Engineering & Text Preprocessing
+This stage converts multiple metadata columns into a single, clean input for the Machine Learning model.
+
+Feature Fusion (Context Concatenation):
+
+Combined title + abstract + venue into a single full_context column.
+
+Why include Venue? In academic datasets, the venue (e.g., ICLP, KR) acts as a strong domain signal, significantly improving accuracy for papers with short or missing abstracts.
+
+Text Normalization:
+
+Lowercasing: Standardized all text to lowercase.
+
+LaTeX & URL Removal: Used Regex to strip math symbols (e.g., $k$) and web links to reduce noise.
+
+Punctuation Stripping: Removed punctuation to prepare the text for TF-IDF Vectorization and traditional classifiers (SVM/Random Forest).
+
+Whitespace Control: Removed tabs, newlines, and extra spaces.
