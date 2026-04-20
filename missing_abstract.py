@@ -33,4 +33,4 @@ def export_missing_abstract_dois(null_report_path, source_data_path, output_path
         print(f"Đã xảy ra lỗi: {e}")
 
 # Thực thi code
-export_missing_abstract_dois('null_values_report.csv', 'Stage_1_publcitrain.csv', 'missing_abstracts_doi.csv')
+export_missing_abstract_dois('null_values_test_report.csv', 'test (2).csv', 'missing_abstracts_doi_test.csv')

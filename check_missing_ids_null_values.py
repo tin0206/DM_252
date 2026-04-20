@@ -1,9 +1,9 @@
 import pandas as pd
 
 # --- PART 1: CHECK FOR MISSING IDs IN INPUT FILE ---
-print("=== CHECKING FOR MISSING IDs IN STAGE_1_PUBLCITRAIN.CSV ===")
+print("=== CHECKING FOR MISSING IDs IN TEST (2).CSV ===")
 try:
-    df_input = pd.read_csv('Stage_1_publcitrain.csv')
+    df_input = pd.read_csv('test (2).csv')
 
     # 1. Get unique existing IDs and sort them
     existing_ids = sorted(df_input['id'].unique())
@@ -26,22 +26,22 @@ try:
 
     if len(missing_ids) > 0:
         # --- NEW: SAVE MISSING IDs TO FILE ---
-        with open('missing_ids.txt', 'w') as f:
+        with open('missing_ids_test.txt', 'w') as f:
             for m_id in missing_ids:
                 f.write(f"{m_id}\n")
-        print("Success: All missing IDs have been saved to 'missing_ids.txt'")
+        print("Success: All missing IDs have been saved to 'missing_ids_test.txt'")
     else:
         print("Success: No IDs are missing between Min and Max.")
 
 except FileNotFoundError:
-    print("Error: 'Stage_1_publcitrain.csv' not found.")
+    print("Error: 'test (2).csv' not found.")
 
 print("\n" + "="*50 + "\n")
 
-# --- PART 2: CHECK FOR NULL VALUES IN PROCESSED TRAIN.CSV ---
-print("=== CHECKING FOR NULL VALUES IN TRAIN.CSV ===")
+# --- PART 2: CHECK FOR NULL VALUES IN PROCESSED TEST.CSV ---
+print("=== CHECKING FOR NULL VALUES IN TEST.CSV ===")
 try:
-    df_train = pd.read_csv('train.csv')
+    df_train = pd.read_csv('test.csv')
 
     # 1. Statistical summary of nulls per column
     print("--- Null Value Statistics per Column ---")
@@ -55,9 +55,9 @@ try:
         print(f"Found {len(null_rows)} rows containing null values.")
         
         # Optional: Save the null report for manual cleaning
-        null_rows.to_csv('null_values_report.csv', index=False)
+        null_rows.to_csv('null_values_test_report.csv', index=False)
     else:
-        print("Success: No null values found in 'train.csv'.")
+        print("Success: No null values found in 'test.csv'.")
 
 except FileNotFoundError:
-    print("Error: 'train.csv' not found. Please ensure the generation script has finished running.")
+    print("Error: 'test.csv' not found. Please ensure the generation script has finished running.")
