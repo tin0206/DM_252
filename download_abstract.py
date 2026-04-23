@@ -41,7 +41,7 @@ def process_data(input_file, output_file):
     df_stage1['abstract'] = df_stage1['doi'].apply(get_abstract)
     
     # 3. Select and rename columns to match the required format
-    # Based on your image: id, title, abstract, authors, venue, year, Label
+    # Based on your image: id, title, abstract, authors, venue, year
     # We ensure these columns exist in the final dataframe
     column_mapping = {
         'id': 'id',
@@ -50,7 +50,6 @@ def process_data(input_file, output_file):
         'authors': 'authors',
         'venue': 'venue',
         'year': 'year',
-        'Label': 'Label'
     }
     
     # Create the new dataframe with desired columns
@@ -65,4 +64,4 @@ def process_data(input_file, output_file):
 
 # Execute
 if __name__ == "__main__":
-    process_data('Stage_1_publcitrain.csv', 'train.csv')
+    process_data('test (2).csv', 'test.csv')

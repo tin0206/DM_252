@@ -22,7 +22,13 @@ def advanced_clean(text):
 
 def create_training_data(input_file, output_file):
     # Load data
-    df = pd.read_csv(input_file)
+    df = pd.read_csv(
+        input_file, 
+        sep=',', 
+        quotechar='"', 
+        escapechar='\\',
+        on_bad_lines='warn'
+    )
     
     print(f"Initial rows: {len(df)}")
     print("Preprocessing started (handling NaNs)...")
