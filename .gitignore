@@ -9,3 +9,6 @@ null_values_report.csv
 null_values_test_report.csv
 missing_abstracts_doi.csv
 missing_abstracts_doi_test.csv
+submission_ordinal_bce.csv
+
+.venv/
